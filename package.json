@@ -1,6 +1,6 @@
 {
-  "name": "highcharts-export-server-js",
-  "version": "1.0.0",
+  "name": "highcharts-phantomjs",
+  "version": "2.0.1",
   "description": "PhantomJS script to convert SVG or Highcharts JSON options objects to chart images",
   "main": "highcharts-convert.js",
   "scripts": {
@@ -13,13 +13,15 @@
   "keywords": [
     "highcharts",
     "charts",
+    "graphs",
     "images",
     "convert",
+    "export",
     "png",
     "svg",
     "phantomjs"
   ],
-  "author": "Nicolás Fantone <nfantone@gmail.com> (https://github.com/nfantone)",
+  "author": "Gert Vaartjes <@GertVaartjes> (https://github.com/gvaartjes)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/nfantone/highcharts-export-server/issues"
