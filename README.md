@@ -1,7 +1,10 @@
-# highcharts-convert
+## ![highcharts](https://www.dropbox.com/s/3se8pnb23b4csay/highcharts.png?raw=1)
+
 The file `highcharts-convert.js` is a [PhantomJS](http://phantomjs.org/) script to convert SVG or Highcharts JSON options objects to chart images. It is ideal for batch processing Highcharts configurations for attaching to emails or reports. An online demo with a GUI can be viewed at [export.highcharts.com/demo](http://export.highcharts.com/demo).
 
-# Installation
+> **Note**  The Highcharts files are subjected to the Highcharts License.
+
+## Installation
 
 ```sh
 git clone git+https://github.com/nfantone/highcharts-export-server.git
@@ -9,41 +12,54 @@ cd highcharts-export-server
 npm i --production
 ```
 
-## Installation of PhantomJS
-You need to install PhantomJS, a headless browser based on WebKit. For installation details, see [http://phantomjs.org/download.html](http://phantomjs.org/download.html)
+### Installation of PhantomJS
+You need to install PhantomJS, a headless browser based on WebKit.
 
 ```sh
 # On Ubuntu
 sudo apt-get install phantomjs
+
+# On Mac OSX
+brew update && brew install phantomjs
+
+# Using npm
+sudo npm install phantomjs -g
 ```
 
-> **Note**  The Highcharts files are subjected to the Highcharts License.
+>  For more installation details, see [http://phantomjs.org/download.html](http://phantomjs.org/download.html)
 
-# Example usage
-## Command line
+## Example usage
+### Command line
 
 ```sh
 phantomjs highcharts-convert.js -infile options1.json -outfile chart1.png -scale 2.5 -width 300 -constr Chart -callback callback.js
 ```
 
-## Run PhantomJS as HTTP server
+### Run PhantomJS as HTTP server
 
 ```sh
 phantomjs highcharts-convert.js -host 127.0.0.1 -port 3003
 ```
 
-# Description of command line parameters
-`**-infile**`: The file to convert, assumes it's either a JSON file, the script checks for the input file to have the extension '.json', or otherwise it assumes it to be an svg file.
+#### Description of command line parameters
+##### `-infile`
 
-`**-outfile**`: The file to output. Must be a filename with the extension .jpg, .png .pdf or .svg.
+The file to convert, assumes it's either a JSON file, the script checks for the input file to have the extension '.json', or otherwise it assumes it to be an svg file.
 
-`**-scale**`: To set the zoomFactor of the page rendered by PhantomJS. For example, if the _chart.width_ option in the chart configuration is set to 600 and the scale is set to 2, the output raster image will have a pixel width of 1200. So this is a convenient way of increasing the resolution without decreasing the font size and line widths in the chart. This is ignored if the _-width_ parameter is set.
+##### `-outfile`
+The file to output. Must be a filename with the extension .jpg, .png .pdf or .svg.
 
-`**-width**`: Set the exact pixel width of the exported image or pdf. This overrides the _-scale_ parameter.
+##### `-scale`
+To set the zoomFactor of the page rendered by PhantomJS. For example, if the _chart.width_ option in the chart configuration is set to 600 and the scale is set to 2, the output raster image will have a pixel width of 1200. So this is a convenient way of increasing the resolution without decreasing the font size and line widths in the chart. This is ignored if the _-width_ parameter is set.
 
-`**-constr**`: The constructor name. Can be one of _Chart_ or _StockChart_. This depends on whether you want to generate Highstock or basic Highcharts.
+##### `-width`
+Set the exact pixel width of the exported image or pdf. This overrides the _-scale_ parameter.
 
-`**-callback**`: Filename of the _callback_. The _callback_ is a function which will be called in the constructor of Highcharts to be executed on chart load. All code of the callback must be enclosed by a function. See this example of contents of the callback file:
+##### `-constr`
+The constructor name. Can be one of _Chart_ or _StockChart_. This depends on whether you want to generate Highstock or basic Highcharts.
+
+##### `-callback`
+Filename of the _callback_. The _callback_ is a function which will be called in the constructor of Highcharts to be executed on chart load. All code of the callback must be enclosed by a function. See this example of contents of the callback file:
 
 ```javascript
 function(chart) {
@@ -55,11 +71,13 @@ function(chart) {
 }
 ```
 
-`**-host**`: The hostname PhantomJS is listening to for POST-requests. If this parameter is specified, phantomjs startsup as Http-server.
+##### `-host`
+The hostname PhantomJS is listening to for POST-requests. If this parameter is specified, phantomjs startsup as Http-server.
 
-`**-port**`: The portnumber PhantomJS is listening to for POST-requests.
+##### `-port`
+The portnumber PhantomJS is listening to for POST-requests.
 
-# Running the script as HTTP server
+## Running the script as HTTP server
 Start PhantomJS as a server. You can use the same script as for command line usage. Start the server like this:
 
 ```sh
@@ -68,7 +86,7 @@ phantomjs highcharts-convert.js -host 127.0.0.1 -port 3003
 
 You can change the host and port to your needs. The server listens only to a POST request. You can use the same parameters as for command line usage, but wrap them in a JSON structure.
 
-## Sample usage
+### Sample usage
 Here is an example of a valid request, given a JSON body in some file:
 
 ```javascript
