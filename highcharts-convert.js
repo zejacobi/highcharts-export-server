@@ -1,7 +1,7 @@
 /**
  * @license Highcharts JS v3.0.1 (2012-11-02)
  *
- * (c) 20013-2014
+ * (c) 2013-2014
  *
  * Author: Gert Vaartjes
  *

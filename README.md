@@ -1,5 +1,4 @@
-## ![highcharts](https://www.dropbox.com/s/3se8pnb23b4csay/highcharts.png?raw=1)
-
+# ![highcharts](https://www.dropbox.com/s/3se8pnb23b4csay/highcharts.png?raw=1)
 The file `highcharts-convert.js` is a [PhantomJS](http://phantomjs.org/) script to convert SVG or Highcharts JSON options objects to chart images. It is ideal for batch processing Highcharts configurations for attaching to emails or reports. An online demo with a GUI can be viewed at [export.highcharts.com/demo](http://export.highcharts.com/demo).
 
 > **Note**  The Highcharts files are subjected to the Highcharts License.
@@ -43,7 +42,6 @@ phantomjs highcharts-convert.js -host 127.0.0.1 -port 3003
 
 #### Description of command line parameters
 ##### `-infile`
-
 The file to convert, assumes it's either a JSON file, the script checks for the input file to have the extension '.json', or otherwise it assumes it to be an svg file.
 
 ##### `-outfile`
