@@ -1,46 +1,58 @@
 # ![highcharts](https://www.dropbox.com/s/3se8pnb23b4csay/highcharts.png?raw=1)
-The file `highcharts-convert.js` is a [PhantomJS](http://phantomjs.org/) script to convert SVG or Highcharts JSON options objects to chart images. It is ideal for batch processing Highcharts configurations for attaching to emails or reports. An online demo with a GUI can be viewed at [export.highcharts.com/demo](http://export.highcharts.com/demo).
+The file `lib/highcharts-convert.js` is a [PhantomJS](http://phantomjs.org/) script to convert SVG or Highcharts JSON options objects to chart images. It is ideal for batch processing Highcharts configurations for attaching to emails or reports. An online demo with a GUI can be viewed at [export.highcharts.com/demo](http://export.highcharts.com/demo).
 
 > **Note**  The Highcharts files are subjected to the Highcharts License.
 
 ## Installation
 
+- You can just install the module globally or locally, and run it as a service.
+
 ```sh
-git clone git+https://github.com/nfantone/highcharts-export-server.git
+# Global
+sudo npm install -g highcharts-phantomjs
+highcharts-phantomjs start
+info: [highcharts-convert]    Started converter on 127.0.0.1:3030 (PID: 9351)
+
+# Local
+npm install highcharts-phantomjs
+cd node_modules/highcharts-phantomjs
+./server.js start
+info: [highcharts-convert]    Started converter on 127.0.0.1:3030 (PID: 8342)
+```
+
+- Alternatively, you could clone this repository and run `phantomjs` manually.
+
+```sh
+git clone https://github.com/nfantone/highcharts-export-server
 cd highcharts-export-server
-npm i --production
+npm install --production --no-optional
+phantomjs lib/highcharts-convert.js -host 127.0.0.1 -port 3030
 ```
 
-### Installation of PhantomJS
-You need to install PhantomJS, a headless browser based on WebKit.
+> For this option to work, you need to have `phantomjs` binary in your PATH (see http://phantomjs.org/download.html).
+
+## Usage
 
 ```sh
-# On Ubuntu
-sudo apt-get install phantomjs
+Usage: highcharts-phantomjs start [-h HOST][-p PORT] -- [options]
 
-# On Mac OSX
-brew update && brew install phantomjs
+Commands:
+  start  Starts highcharts-convert HTTP server
 
-# Using npm
-sudo npm install phantomjs -g
+Options:
+  -h, --hostname, --host  Hostname of the server          [default: "127.0.0.1"]
+  -p, --port              Port the server will listen on         [default: 3030]
+  --help                  Show help                                    [boolean]
+  --version               Show version number                          [boolean]
 ```
 
->  For more installation details, see [http://phantomjs.org/download.html](http://phantomjs.org/download.html)
 
-## Example usage
-### Command line
+### Options
 
-```sh
-phantomjs highcharts-convert.js -infile options1.json -outfile chart1.png -scale 2.5 -width 300 -constr Chart -callback callback.js
-```
+Besides `-h` (hostname) and `-p` (port number), any other arguments specified after `--` will be passed as is to the `phantomjs` script on `lib/highcharts-convert.js`.
 
-### Run PhantomJS as HTTP server
+The following are all the available options.
 
-```sh
-phantomjs highcharts-convert.js -host 127.0.0.1 -port 3003
-```
-
-#### Description of command line parameters
 ##### `-infile`
 The file to convert, assumes it's either a JSON file, the script checks for the input file to have the extension '.json', or otherwise it assumes it to be an svg file.
 
@@ -69,22 +81,9 @@ function(chart) {
 }
 ```
 
-##### `-host`
-The hostname PhantomJS is listening to for POST-requests. If this parameter is specified, phantomjs startsup as Http-server.
+### API
+After starting the converter server, it will listen for `POST` request. You can use the same parameters as for command line usage, but wrap them in a JSON structure.
 
-##### `-port`
-The portnumber PhantomJS is listening to for POST-requests.
-
-## Running the script as HTTP server
-Start PhantomJS as a server. You can use the same script as for command line usage. Start the server like this:
-
-```sh
-phantomjs highcharts-convert.js -host 127.0.0.1 -port 3003
-```
-
-You can change the host and port to your needs. The server listens only to a POST request. You can use the same parameters as for command line usage, but wrap them in a JSON structure.
-
-### Sample usage
 Here is an example of a valid request, given a JSON body in some file:
 
 ```javascript
@@ -97,5 +96,9 @@ Here is an example of a valid request, given a JSON body in some file:
 ```
 
 ```sh
+highcharts-phantomjs start -p 3003
+info: [highcharts-convert]    Started converter on 127.0.0.1:3030 (PID: 1350)
+
+# On another terminal
 curl -XPOST http://localhost:3003 -H 'Content-Type: application/json' -d @example-request.json
 ```
