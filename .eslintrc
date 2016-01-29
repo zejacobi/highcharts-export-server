@@ -1,0 +1,23 @@
+{
+  "extends": "semistandard",
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "phantom": true,
+    "$": true,
+    "Highcharts": true,
+    "Image": true,
+    "options": true,
+    "cb": true,
+    "dataOptions": true,
+    "customCode": true,
+    "globalOptions": true
+  },
+  "rules": {
+    "space-before-function-paren": [2, "never"],
+    "callback-return": [2, ["callback", "cb", "next", "done"]],
+    "no-unused-vars": [2, { "vars": "all", "args": "after-used" }],
+    "space-before-function-paren": [2, "never"]
+  }
+}
