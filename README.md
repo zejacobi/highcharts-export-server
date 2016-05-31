@@ -16,7 +16,7 @@ info: [highcharts-convert]    Started converter on 127.0.0.1:3030 (PID: 9351)
 # Local
 npm install highcharts-phantomjs
 cd node_modules/highcharts-phantomjs
-./server.js start
+npm start
 info: [highcharts-convert]    Started converter on 127.0.0.1:3030 (PID: 8342)
 ```
 

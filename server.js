@@ -2,9 +2,6 @@
 
 'use strict';
 
-/**
- * @author nfantone
- */
 const pck = require('./package');
 const path = require('path');
 const SERVER_NAME = 'highcharts-convert';
@@ -24,7 +21,7 @@ var args = require('yargs')
     p: DEFAULT_PORT,
     h: DEFAULT_HOSTNAME
   })
-  .check(function(argv) {
+  .check((argv) => {
     if (!argv._[0] || !argv._[0].match(/start/)) {
       throw new Error('Missing or invalid <command>');
     }
@@ -32,12 +29,9 @@ var args = require('yargs')
   })
   .help('help')
   .showHelpOnFail(false, `Try ${SERVER_NAME} --help for available options`)
-  .version(function() {
-    return pck.version;
-  }).argv;
+  .version(() => pck.version).argv;
 
 const winston = require('winston');
-
 const spawn = require('child_process').spawn;
 const phantomjs = require('phantomjs-prebuilt');
 
@@ -52,9 +46,10 @@ var logger = new winston.Logger({
 logger.cli();
 
 function exitProcess(signal) {
-  return function() {
+  return () => {
     server.kill(signal);
     logger.warn('Terminating converter (received %s)', signal);
+    return process.exit(0);
   };
 }
 
@@ -65,13 +60,9 @@ var childArgs = [SERVER_SCRIPT_PATH]
 var server = spawn(phantomjs.path, childArgs);
 logger.info('Started converter on %s:%s (PID: %s)', args.h, args.p, server.pid);
 
-server.on('error', (err) => {
-  logger.error('Failed to start [%s]', SERVER_NAME, err);
-});
+server.on('error', (err) => logger.error('Failed to start [%s]', SERVER_NAME, err));
 
-server.on('close', (code) => {
-  logger.info('Converter exited successfully (code: %s)', code || server.exitCode || 0);
-});
+server.on('close', (code) => logger.info('Converter exited successfully (code: %s)', code || server.exitCode || 0));
 
 process.once('SIGINT', exitProcess('SIGINT'));
 process.once('SIGTERM', exitProcess('SIGTERM'));

@@ -20,7 +20,6 @@
     "no-unused-vars": [2, {
       "vars": "all",
       "args": "after-used"
-    }],
-    "space-before-function-paren": [2, "never"]
+    }]
   }
 }
