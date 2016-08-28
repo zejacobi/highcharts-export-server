@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+- '5'
+- '6'
+branches:
+only:
+- master
+- develop
+- /^v?(\\d\\.){2}\\d$/
+cache:
+  bundler: true
+  directories:
+  - node_modules
+notifications:
+  email:
+  - nfantone@gmail.com
+script: npm run lint
+deploy:
+  provider: npm
+  email: nfantone@gmail.com
+  api_key:
+    secure: vBEaQxCvZCic8gFdVj780ZrK2R/l4FLnZe1GVN5hZaK4Tubcnni7EYBNnD/2OCdnuPeFOlHG0c/N9gyHyTYSxDhrH0wCZR7OcUXe9Fk8QKfxSU+L1OFNYWQm2Xa/Vq+XMFfX7gXezhMEyi3zWgnphf4UtT3fP/6e+GkXHKh9DbYzXiLI0hrkWnL3l3tgeVcXkq+QawlJ+lgw85vcI+tKh7FUvh4L9HLIk6FQD19ZYdMkWfSvPeLHiY++2h80X7concXUbjzdeom5jqdIc4Qyuad/pFUuul5LE2TqzWAw5dgwTCDMlhozHxVb9a1EMIf7etnQj7Wp5rL6J4qUCVk9/leGLKdr8J0284pqI9mvt20IKYBh4f5JduxtoJzTjqA4ApEQhn5EivuAPd4CADaz/wUT0pVznjT8lVbhs5HYj1+qSBnyygz6ATPaGRZ2XyYJIlHxbFsnjIkZfukZAzgfCTjtHreh1ZzdG58l0TmkLuZD3KXldGl+0U/T825qG1/TUSfolxyy18BC4sSIUfw3LYxhnyjiHWOkUD9LKYNRhOzZHs8frReEQhFleTeJKu9epYBYrqnIv/Tp916qJFC83vVEa3mkIKALfbMHs9syb4Mw3jdvoSMvCqnXpar/9r/i/hmR/KYSySrYXkQTYabe1Y/ublbAP75NpMZymclnexI=
+  on:
+    tags: true
+    repo: nfantone/highcharts-export-server
