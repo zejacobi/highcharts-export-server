@@ -1,0 +1,16 @@
+{
+  "files": [
+    "highcharts/highcharts.js",
+    "highcharts/highcharts-3d.js",
+    "highcharts/highcharts-more.js",
+    "highcharts/modules/data.js",
+    "highcharts/modules/drilldown.js",
+    "highcharts/modules/funnel.js",
+    "highcharts/modules/heatmap.js",
+    "highcharts/modules/treemap.js",
+    "highcharts/modules/no-data-to-display.js",
+    "highcharts/modules/map.js",
+    "highcharts/modules/solid-gauge.js",
+    "highcharts/modules/broken-axis.js"
+  ]
+}

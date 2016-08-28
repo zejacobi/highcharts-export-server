@@ -1,11 +1,14 @@
 # ![highcharts](https://www.dropbox.com/s/3se8pnb23b4csay/highcharts.png?raw=1)
+
+[![Build Status](https://travis-ci.org/nfantone/highcharts-export-server.svg?branch=develop)](https://travis-ci.org/nfantone/highcharts-export-server)
+
 The file `lib/highcharts-convert.js` is a [PhantomJS](http://phantomjs.org/) script to convert SVG or Highcharts JSON options objects to chart images. It is ideal for batch processing Highcharts configurations for attaching to emails or reports. An online demo with a GUI can be viewed at [export.highcharts.com/demo](http://export.highcharts.com/demo).
 
 > **Note**  The Highcharts files are subjected to the Highcharts License.
 
 ## Installation
 
-- You can just install the module globally or locally, and run it as a service.
+- You can just install the module globally (preferred) or locally, and run it as a service.
 
 ```sh
 # Global
