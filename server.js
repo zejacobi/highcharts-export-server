@@ -57,7 +57,7 @@ var childArgs = [SERVER_SCRIPT_PATH]
   .concat(['-port', args.p, '-host', args.h])
   .concat(args._);
 
-var server = spawn(phantomjs.path, childArgs);
+var server = spawn(phantomjs.path, childArgs, { stdio: 'inherit' });
 logger.info('Started converter on %s:%s (PID: %s)', args.h, args.p, server.pid);
 
 server.on('error', (err) => logger.error('Failed to start [%s]', SERVER_NAME, err));
