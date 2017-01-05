@@ -23,8 +23,8 @@ var args = require('yargs')
   })
   .check((argv) => {
     if (!argv._[0] || !argv._[0].match(/start/)) {
-      throw new Error('Missing or invalid <command>');
-    }
+      argv._[0] = 'start'
+}
     return true;
   })
   .help('help')
