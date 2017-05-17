@@ -58,3 +58,14 @@ info: [highcharts-convert]    Started converter on 127.0.0.1:3030 (PID: 1350)
 # On another terminal
 curl -XPOST http://localhost:3003 -H 'Content-Type: application/json' -d @example-request.json
 ```
+
+One further change is how height and width are handled. Here you can use them like this:
+ 
+ 
+```javascript
+// example-request.json
+{
+    "infile": "{xAxis: {categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']},series: [{data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]}],width: 480, height: 290};",
+    "constr": "Chart"
+}
+```
