@@ -1,8 +1,10 @@
 # ![highcharts](https://www.dropbox.com/s/3se8pnb23b4csay/highcharts.png?raw=1)
 
-The file `lib/highcharts-convert.js` is a [PhantomJS](http://phantomjs.org/) script to convert SVG or Highcharts JSON options objects to chart images. It is ideal for batch processing Highcharts configurations for attaching to emails or reports. An online demo with a GUI can be viewed at [export.highcharts.com/demo](http://export.highcharts.com/demo).
+The file `lib/highcharts-convert.js` is a [PhantomJS](http://phantomjs.org/) script to convert SVG or Highcharts 
+JSON options objects to chart images. I use it to generate images for engagement emails
 
-This fork is set up to allow the script to be run like any other node process (e.g. with nodemon for development and pm2 or the like for production).
+This fork is set up to allow the script to be run like any other node process (e.g. with nodemon for development 
+and pm2 or the like for production).
 
 > **Note**  The Highcharts files are subjected to the Highcharts License.
 
@@ -26,8 +28,13 @@ sudo pm2 save
 sudo pm2 startup ubuntu
 ```
 
+Please remember to install any fonts you plan to use. Phantom.js bugs prevent the use of fonts from CDNs, so all
+necessary fonts must be available locally. Currently Roboto Condensed is necessary for the images that go out in
+emails. You can get it (on ubuntu) with `sudo apt-get install fonts-roboto`.
+
 ### API
-After starting the converter server, it will listen for `POST` request. You can use the same parameters as for command line usage, but wrap them in a JSON structure.
+After starting the converter server, it will listen for `POST` request. You can use the same parameters as for 
+command line usage, but wrap them in a JSON structure.
 
 Here is an example of a valid request, given a JSON body in some file:
 
@@ -39,7 +46,8 @@ Here is an example of a valid request, given a JSON body in some file:
 }
 ```
 
-This version also differs slightly from the master, in that I've hacked in some timezone code. To plot a timeseries plot with a utcOffset (in minutes), you'd use:
+This version also differs slightly from the master, in that I've hacked in some timezone code. To plot a timeseries 
+plot with a utcOffset (in minutes), you'd use:
 
 ```javascript
 // example-request.json
