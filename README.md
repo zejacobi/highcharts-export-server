@@ -12,10 +12,10 @@ and pm2 or the like for production).
 This version is meant to be installed locally. 
 
 ```sh
-git clone git clone https://github.com/zejacobi/highcharts-export-server.git
+git clone https://github.com/zejacobi/highcharts-export-server.git
 cd node_modules/highcharts-phantomjs
 cd highcharts-export-server
-npm install --production --no-optional
+npm install --production
 nodemon
 ```
 
